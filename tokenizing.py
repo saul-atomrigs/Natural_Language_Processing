@@ -14,3 +14,14 @@ for w in words:
   stemmed.append(stemmer.stem(w.lower()))
 print(stemmed)
 
+
+# Preprocessing in Korean / 한글 전처리
+clean_review=re.sub("[^가-힣ㄱ-ㅎㅏ-ㅣ\\s]","", reviews[])
+
+# 한글 토크나이징
+okt=Okt()
+review=okt.morphs(review,stem=True)
+
+# 한글 불용어 (직접 설정)
+stopwords=set(['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한','앗'])
+clean_review=[r for r in reviews if r not in stopwords]
