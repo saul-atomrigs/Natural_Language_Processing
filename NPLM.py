@@ -27,7 +27,7 @@ word2idx['<EOS>'] = word2idx_len + 1  # end of sentence 추가
 idx2word = {v: k for (k, v) in word2idx.items()}
 sequences = [s + [word2idx['<EOS>']] for s in sequences]
 
-sequences
+print(sequences)
 
 def prepare_sentence(seq, maxlen):
     # Pads seq and slides windows
