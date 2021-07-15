@@ -23,3 +23,38 @@ gtrends_overtime(kw_list, 'Sunscreen', "_worldwide_", directory,
                  category=71, time='all', loc='')
 
 
+def normalise(df, n_file, key_ref, col='date'):
+    li = []
+    # Checking the relative popularity between comparisons
+    for i in range(n_file-1):    
+        df = df.drop(columns=col+"."+str(i+1)+"")
+        # Appending the list if relative popularity of the keyword reference is different
+        if df[key_ref+"."+str(i+1)+""][0] == df[key_ref][0]:
+            pass
+        else:
+            li.append(i+1)
+    
+    # Normalizing relative popularity when the relative popularity of the keyword reference is different         
+    for l in li:
+        k = df.columns.get_loc(key_ref+"."+str(l)+"")
+        for n in range(len(df.index)):
+            # Computing relative popularity by normalizing according to the reference
+            if df.iloc[n,(k)] > 0:
+                for m in range(5):
+                    df.iloc[n,(k-4+m)] = (df.iloc[n,(k-4+m)] * (df[key_ref][n]/df.iloc[n,(k)]))
+            else:
+                for m in range(5):
+                    df.iloc[n,(k-4+m)] = (df.iloc[n,(k-4+m)] * (df[key_ref][n]/0.01))
+    return df
+
+normalised = normalise(combined, n_file=25, key_ref="Noodles", col='date')
+
+
+def tidy(df, n_file, key_ref, kw_file, col='date'):
+    for i in range(n_file-1):    
+        df = df.drop(columns=key_ref+"."+str(i+1)+"")
+    df=pd.melt(df,id_vars=[col],var_name='Keywords', value_name='RelativePopularity')
+    df = df.merge(kw_file, on="Keywords")
+    return df
+  
+overtime = tidy(normalised, 25, "Noodles", kw_file, col='date')
