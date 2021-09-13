@@ -57,10 +57,11 @@ for review in clean_text:
         #     tmp.append(word2idx['<OOV>'])
     x_idx.append(tmp)
 
-# 학습 데이터를 저장해 둔다.
+# 학습 데이터를 pickle로 저장해 둔다.
 with open('data/popcorn.pkl', 'wb') as f:
     pickle.dump([clean_text, x_idx, list(df['sentiment']), word2idx], f, pickle.DEFAULT_PROTOCOL)
 
 print(x_idx[0])
 
 print(clean_text[0])
+
