@@ -1,5 +1,5 @@
 
-# TODO: FastText
+# TODO: FastText GENSIM
 
 from gensim.models.fasttext import FastText
 import numpy as np
