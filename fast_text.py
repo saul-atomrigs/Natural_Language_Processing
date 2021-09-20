@@ -81,6 +81,7 @@ def get_similar_words(model, word, top_n=10):
 # 어휘 사전 확인
 model.wv.vocab
 
+
 get_word_vector(model, '학교')
 
 get_similar_words(model, '바다')
