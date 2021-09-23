@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from tqdm import tqdm
 
-# news data를 읽어온다.
+# Read new data
 newsData = fetch_20newsgroups(
     shuffle=True, random_state=1, remove=('footers', 'quotes'))
 
