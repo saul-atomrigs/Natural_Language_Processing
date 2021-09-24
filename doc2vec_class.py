@@ -1,4 +1,4 @@
-# Commented out IPython magic to ensure Python compatibility.
+
 import numpy as np
 import pickle
 from tensorflow.keras.layers import Input, Dense, Dropout
