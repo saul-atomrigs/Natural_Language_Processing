@@ -1,6 +1,5 @@
 
 # A Neural Probabilistic Language Model (NPLM)
-# NPLM 논문 : Yoshua Bengio, et. al., 2003, A Neural Probabilistic Language Model
 # -------------------------------------------------------------------------------
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
